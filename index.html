@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#1E3A5F">
+  <title>SweepNspect</title>
+  <link rel="icon" type="image/png" href="assets/logo-192.png">
+  <link rel="apple-touch-icon" href="assets/logo-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- SCREEN: Home Dashboard -->
+    <div class="screen active" id="screen-home">
+      <div class="top-app-bar">
+        <div class="logo-container">
+          <img src="assets/logo-48.png" alt="SweepNspect" class="app-logo">
+          <span class="top-app-bar-title">SweepNspect</span>
+        </div>
+        <button class="icon-btn" onclick="navigateTo('screen-profile')">
+          <span class="material-icons-outlined">account_circle</span>
+        </button>
+      </div>
+
+      <div class="screen-content">
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-value">47</div>
+            <div class="stat-label">Inspections</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">$12.4k</div>
+            <div class="stat-label">This Month</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">4.9★</div>
+            <div class="stat-label">Rating</div>
+          </div>
+        </div>
+
+        <div class="nav-tile-grid">
+          <button class="nav-tile nav-tile-primary" onclick="navigateTo('screen-customers')">
+            <span class="nav-tile-icon">👥</span>
+            <span class="nav-tile-label">Customers</span>
+          </button>
+          <button class="nav-tile nav-tile-secondary" onclick="navigateTo('screen-customers')">
+            <span class="nav-tile-icon">📋</span>
+            <span class="nav-tile-label">Inspections</span>
+          </button>
+          <button class="nav-tile nav-tile-secondary" onclick="navigateTo('screen-estimate')">
+            <span class="nav-tile-icon">💰</span>
+            <span class="nav-tile-label">Estimates</span>
+          </button>
+          <button class="nav-tile nav-tile-secondary" onclick="navigateTo('screen-community')">
+            <span class="nav-tile-icon">🤝</span>
+            <span class="nav-tile-label">Community</span>
+          </button>
+          <button class="nav-tile nav-tile-locked" onclick="showLockedModal('gas')">
+            <span class="nav-tile-icon">🔵</span>
+            <span class="nav-tile-label">Gas Service</span>
+          </button>
+          <button class="nav-tile nav-tile-locked" onclick="showLockedModal('pellet')">
+            <span class="nav-tile-icon">🟤</span>
+            <span class="nav-tile-label">Pellet Stoves</span>
+          </button>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">Your Certifications</span>
+          <button class="section-action" onclick="navigateTo('screen-profile')">Manage</button>
+        </div>
+
+        <div class="cert-row">
+          <span class="cert-badge earned">✓ CSIA Certified</span>
+          <span class="cert-badge earned">✓ NCSG Member</span>
+          <span class="cert-badge locked">🔒 NFI Gas</span>
+          <span class="cert-badge locked">🔒 NFI Pellet</span>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">Recent Customers</span>
+          <button class="section-action" onclick="navigateTo('screen-customers')">See All</button>
+        </div>
+
+        <div class="content-padding" style="padding-top: 0;">
+          <div class="card" onclick="navigateTo('screen-property')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Johnson Residence</div>
+                  <div class="card-subtitle">1847 Maple Drive, Vashon</div>
+                </div>
+                <span class="chip chip-warning">Due for Service</span>
+              </div>
+              <div class="card-meta">
+                <span class="card-meta-item">
+                  <span class="material-icons-outlined">home</span>
+                  2 chimneys
+                </span>
+                <span class="card-meta-item">
+                  <span class="material-icons-outlined">event</span>
+                  Last: Oct 2024
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" onclick="navigateTo('screen-property')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Peterson Family</div>
+                  <div class="card-subtitle">2903 Harbor View Rd</div>
+                </div>
+                <span class="chip chip-info">Scheduled</span>
+              </div>
+              <div class="card-meta">
+                <span class="card-meta-item">
+                  <span class="material-icons-outlined">home</span>
+                  1 chimney
+                </span>
+                <span class="card-meta-item">
+                  <span class="material-icons-outlined">schedule</span>
+                  Tomorrow 9am
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spacer for FAB -->
+        <div style="height: 100px;"></div>
+      </div>
+
+      <button class="master-sweep-fab" onclick="showMasterSweepModal()">👨‍🏫</button>
+      <button class="fab" onclick="navigateTo('screen-customers')">
+        <span class="material-icons-outlined">add</span>
+      </button>
+
+      <div class="bottom-nav">
+        <button class="nav-item active" onclick="navigateTo('screen-home')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">home</span>
+          </div>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-customers')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">people</span>
+          </div>
+          <span class="nav-label">Customers</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-community')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">groups</span>
+          </div>
+          <span class="nav-label">Community</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-profile')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">person</span>
+          </div>
+          <span class="nav-label">Profile</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SCREEN: Customers List -->
+    <div class="screen" id="screen-customers">
+      <div class="top-app-bar">
+        <button class="icon-btn" onclick="navigateTo('screen-home')">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <span class="top-app-bar-title">Customers</span>
+        <button class="icon-btn" onclick="navigateTo('screen-profile')">
+          <span class="material-icons-outlined">settings</span>
+        </button>
+      </div>
+
+      <div class="screen-content">
+        <div class="content-padding">
+          <div class="card" onclick="navigateTo('screen-property')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Johnson Residence</div>
+                  <div class="card-subtitle">1847 Maple Drive, Vashon</div>
+                </div>
+                <span class="chip chip-warning">Due</span>
+              </div>
+              <div class="card-meta">
+                <span class="card-meta-item">🏠 2 chimneys</span>
+                <span class="card-meta-item">📅 Oct 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" onclick="navigateTo('screen-property')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Peterson Family</div>
+                  <div class="card-subtitle">2903 Harbor View Rd</div>
+                </div>
+                <span class="chip chip-info">Scheduled</span>
+              </div>
+              <div class="card-meta">
+                <span class="card-meta-item">🏠 1 chimney</span>
+                <span class="card-meta-item">📅 Tomorrow</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" onclick="navigateTo('screen-property')">
+            <div class="card-content">
+              <div class="card-title">Mitchell Estate</div>
+              <div class="card-subtitle">445 Westside Hwy</div>
+              <div class="card-meta">
+                <span class="card-meta-item">🏠 3 chimneys</span>
+                <span class="card-meta-item">📅 Sep 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" onclick="navigateTo('screen-property')">
+            <div class="card-content">
+              <div class="card-title">Nguyen Home</div>
+              <div class="card-subtitle">892 Cove Road</div>
+              <div class="card-meta">
+                <span class="card-meta-item">🏠 1 chimney</span>
+                <span class="card-meta-item">📅 Nov 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" onclick="navigateTo('screen-property')">
+            <div class="card-content">
+              <div class="card-title">Williams Cabin</div>
+              <div class="card-subtitle">1205 Forest Trail</div>
+              <div class="card-meta">
+                <span class="card-meta-item">🏠 1 chimney</span>
+                <span class="card-meta-item">✨ New Customer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 100px;"></div>
+      </div>
+
+      <button class="fab">
+        <span class="material-icons-outlined">add</span>
+      </button>
+
+      <div class="bottom-nav">
+        <button class="nav-item" onclick="navigateTo('screen-home')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">home</span>
+          </div>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item active">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">people</span>
+          </div>
+          <span class="nav-label">Customers</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-community')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">groups</span>
+          </div>
+          <span class="nav-label">Community</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-profile')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">person</span>
+          </div>
+          <span class="nav-label">Profile</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SCREEN: Property Detail -->
+    <div class="screen" id="screen-property">
+      <div class="top-app-bar">
+        <button class="icon-btn" onclick="navigateTo('screen-customers')">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <span class="top-app-bar-title">Johnson Residence</span>
+        <button class="icon-btn">
+          <span class="material-icons-outlined">more_vert</span>
+        </button>
+      </div>
+
+      <div class="screen-content">
+        <div class="content-padding">
+          <div class="card-subtitle" style="margin-bottom: 24px;">1847 Maple Drive, Vashon Island, WA 98070</div>
+
+          <div class="section-title" style="margin-bottom: 12px;">CHIMNEYS</div>
+
+          <div class="card" onclick="navigateTo('screen-chimney')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Living Room Fireplace</div>
+                  <div class="card-subtitle">Masonry • Wood Burning</div>
+                </div>
+                <span class="chip chip-warning">Needs Service</span>
+              </div>
+              <div class="card-meta">
+                <span class="card-meta-item">📅 Last: Oct 15, 2024</span>
+                <span class="card-meta-item">📋 Level 1</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" onclick="navigateTo('screen-chimney')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Master Bedroom Insert</div>
+                  <div class="card-subtitle">Prefab • Wood Insert</div>
+                </div>
+                <span class="chip chip-success">Good</span>
+              </div>
+              <div class="card-meta">
+                <span class="card-meta-item">📅 Last: Oct 15, 2024</span>
+                <span class="card-meta-item">📋 Level 1</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <button class="btn btn-filled" style="flex: 1;" onclick="navigateTo('screen-inspection-start')">
+              <span class="material-icons-outlined">assignment</span>
+              Start Inspection
+            </button>
+            <button class="btn btn-outlined">
+              <span class="material-icons-outlined">phone</span>
+            </button>
+          </div>
+
+          <div class="section-title" style="margin: 24px 0 12px;">SERVICE HISTORY</div>
+
+          <div class="card">
+            <div class="card-content">
+              <div class="card-title">Level 1 Inspection + Sweep</div>
+              <div class="card-subtitle">October 15, 2024</div>
+              <div class="card-meta">
+                <span class="card-meta-item">💰 $285</span>
+                <span class="card-meta-item" style="color: var(--md-sys-color-primary);">📄 View Report</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 100px;"></div>
+      </div>
+
+      <button class="fab fab-extended" onclick="navigateTo('screen-inspection-start')">
+        <span class="material-icons-outlined">add</span>
+        Add Chimney
+      </button>
+
+      <div class="bottom-nav">
+        <button class="nav-item" onclick="navigateTo('screen-home')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">home</span>
+          </div>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item active" onclick="navigateTo('screen-customers')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">people</span>
+          </div>
+          <span class="nav-label">Customers</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-community')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">groups</span>
+          </div>
+          <span class="nav-label">Community</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-profile')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">person</span>
+          </div>
+          <span class="nav-label">Profile</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SCREEN: Chimney Detail -->
+    <div class="screen" id="screen-chimney">
+      <div class="top-app-bar">
+        <button class="icon-btn" onclick="navigateTo('screen-property')">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <span class="top-app-bar-title">Living Room Fireplace</span>
+        <button class="icon-btn">
+          <span class="material-icons-outlined">edit</span>
+        </button>
+      </div>
+
+      <div class="screen-content">
+        <div class="content-padding">
+          <div class="card-subtitle" style="margin-bottom: 24px;">Masonry • Wood Burning • Single Flue</div>
+
+          <div class="section-title" style="margin-bottom: 12px;">FLUES</div>
+
+          <div class="card" onclick="navigateTo('screen-inspection-start')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Primary Flue</div>
+                  <div class="card-subtitle">Clay Tile Liner • 12" x 12"</div>
+                </div>
+                <span class="chip chip-warning">Stage 2 Creosote</span>
+              </div>
+              <div class="card-meta">
+                <span class="card-meta-item">🔥 Wood Burning Fireplace</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-filled btn-full" style="margin-top: 24px;" onclick="navigateTo('screen-inspection-start')">
+            <span class="material-icons-outlined">assignment</span>
+            Start Inspection
+          </button>
+        </div>
+
+        <div style="height: 100px;"></div>
+      </div>
+
+      <button class="master-sweep-fab" onclick="showMasterSweepModal()">👨‍🏫</button>
+    </div>
+
+    <!-- SCREEN: Start Inspection -->
+    <div class="screen" id="screen-inspection-start">
+      <div class="top-app-bar">
+        <button class="icon-btn" onclick="navigateTo('screen-chimney')">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <span class="top-app-bar-title">New Inspection</span>
+      </div>
+
+      <div class="screen-content">
+        <div class="content-padding">
+          <div class="card-title" style="margin-bottom: 4px;">Johnson Residence</div>
+          <div class="card-subtitle" style="margin-bottom: 24px;">Living Room Fireplace</div>
+
+          <div class="section-title" style="margin-bottom: 16px;">SELECT INSPECTION LEVEL</div>
+
+          <div class="card" onclick="navigateTo('screen-inspection-checklist')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Level 1 Inspection</div>
+                  <div class="card-subtitle">Standard annual inspection of readily accessible areas</div>
+                </div>
+                <span class="material-icons-outlined">chevron_right</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" onclick="navigateTo('screen-inspection-checklist')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Level 2 Inspection</div>
+                  <div class="card-subtitle">Required for changes, malfunctions, or real estate</div>
+                </div>
+                <span class="material-icons-outlined">chevron_right</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="opacity: 0.5;">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Level 3 Inspection</div>
+                  <div class="card-subtitle">Concealed areas • Requires demolition</div>
+                </div>
+                <span class="material-icons-outlined" style="color: var(--md-sys-color-outline);">lock</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-title" style="margin: 24px 0 16px;">QUICK ACTIONS</div>
+
+          <div class="card">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">Sweep Only</div>
+                  <div class="card-subtitle">Cleaning without formal inspection</div>
+                </div>
+                <span class="material-icons-outlined">chevron_right</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN: Inspection Checklist -->
+    <div class="screen" id="screen-inspection-checklist">
+      <div class="top-app-bar top-app-bar-primary">
+        <button class="icon-btn icon-btn-on-primary" onclick="navigateTo('screen-inspection-start')">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <span class="top-app-bar-title">Level 1 Inspection</span>
+        <button class="icon-btn icon-btn-on-primary">
+          <span class="material-icons-outlined">more_vert</span>
+        </button>
+      </div>
+
+      <div class="progress-steps">
+        <div class="progress-step complete"></div>
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-title">Chimney Cap & Crown</span>
+      </div>
+
+      <div class="screen-content" style="flex: 1;">
+        <div class="checklist-item checked" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox">
+            <span class="material-icons-outlined" style="font-size: 18px;">check</span>
+          </div>
+          <div class="checklist-content">
+            <div class="checklist-label">Rain cap present and secure</div>
+            <div class="checklist-code">NFPA 211 §13.2.1</div>
+          </div>
+          <div class="checklist-actions">
+            <button class="icon-btn">
+              <span class="material-icons-outlined">photo_camera</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="checklist-item flagged" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox">
+            <span class="material-icons-outlined" style="font-size: 18px;">priority_high</span>
+          </div>
+          <div class="checklist-content">
+            <div class="checklist-label">Crown condition - cracks/deterioration</div>
+            <div class="checklist-code">NFPA 211 §13.1.3</div>
+          </div>
+          <div class="checklist-actions">
+            <button class="icon-btn">
+              <span class="material-icons-outlined">photo_camera</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"></div>
+          <div class="checklist-content">
+            <div class="checklist-label">Spark arrestor condition</div>
+            <div class="checklist-code">NFPA 211 §13.2.2</div>
+          </div>
+          <div class="checklist-actions">
+            <button class="icon-btn">
+              <span class="material-icons-outlined">photo_camera</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">Chimney Structure</span>
+        </div>
+
+        <div class="checklist-item checked" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox">
+            <span class="material-icons-outlined" style="font-size: 18px;">check</span>
+          </div>
+          <div class="checklist-content">
+            <div class="checklist-label">Mortar joints condition</div>
+            <div class="checklist-code">NFPA 211 §13.1.2</div>
+          </div>
+          <div class="checklist-actions">
+            <button class="icon-btn">
+              <span class="material-icons-outlined">photo_camera</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"></div>
+          <div class="checklist-content">
+            <div class="checklist-label">Brick/masonry integrity</div>
+            <div class="checklist-code">NFPA 211 §13.1.1</div>
+          </div>
+          <div class="checklist-actions">
+            <button class="icon-btn">
+              <span class="material-icons-outlined">photo_camera</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="checklist-item checked" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox">
+            <span class="material-icons-outlined" style="font-size: 18px;">check</span>
+          </div>
+          <div class="checklist-content">
+            <div class="checklist-label">Flashing condition</div>
+            <div class="checklist-code">NFPA 211 §13.1.4</div>
+          </div>
+          <div class="checklist-actions">
+            <button class="icon-btn">
+              <span class="material-icons-outlined">photo_camera</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="padding: 16px;">
+          <button class="btn btn-filled btn-full" onclick="navigateTo('screen-report')">
+            Continue to Summary
+          </button>
+        </div>
+
+        <div style="height: 80px;"></div>
+      </div>
+
+      <button class="master-sweep-fab" onclick="showMasterSweepModal()">👨‍🏫</button>
+    </div>
+
+    <!-- SCREEN: Report/Summary -->
+    <div class="screen" id="screen-report">
+      <div class="top-app-bar">
+        <button class="icon-btn" onclick="navigateTo('screen-inspection-checklist')">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <span class="top-app-bar-title">Inspection Summary</span>
+        <button class="icon-btn">
+          <span class="material-icons-outlined">share</span>
+        </button>
+      </div>
+
+      <div class="screen-content">
+        <div class="content-padding">
+          <div class="card card-error">
+            <div class="card-content">
+              <div class="card-title">⚠️ 2 Issues Found</div>
+              <div class="card-subtitle">Recommend repairs before regular use</div>
+            </div>
+          </div>
+
+          <div class="section-title" style="margin: 24px 0 12px;">FINDINGS</div>
+
+          <div class="card">
+            <div class="card-content">
+              <span class="chip chip-error" style="margin-bottom: 8px;">Critical</span>
+              <div class="card-title">Crown Deterioration</div>
+              <div class="card-subtitle">Cracks observed in chimney crown. Water infiltration risk.</div>
+              <div class="card-meta">
+                <span class="card-meta-item">📋 Recommend crown repair or replacement</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-content">
+              <span class="chip chip-warning" style="margin-bottom: 8px;">Moderate</span>
+              <div class="card-title">Damper Operation Limited</div>
+              <div class="card-subtitle">Damper stiff, does not fully open or close.</div>
+              <div class="card-meta">
+                <span class="card-meta-item">📋 Recommend lubrication or repair</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <button class="btn btn-outlined" style="flex: 1;">
+              <span class="material-icons-outlined">picture_as_pdf</span>
+              PDF Report
+            </button>
+            <button class="btn btn-filled" style="flex: 1;" onclick="navigateTo('screen-estimate')">
+              <span class="material-icons-outlined">request_quote</span>
+              Create Estimate
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN: Estimate Builder -->
+    <div class="screen" id="screen-estimate">
+      <div class="top-app-bar">
+        <button class="icon-btn" onclick="navigateTo('screen-report')">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <span class="top-app-bar-title">Estimate</span>
+        <button class="icon-btn">
+          <span class="material-icons-outlined">settings</span>
+        </button>
+      </div>
+
+      <div class="screen-content">
+        <div class="content-padding">
+          <div class="card-title" style="margin-bottom: 4px;">Johnson Residence</div>
+          <div class="card-subtitle" style="margin-bottom: 24px;">Based on inspection findings</div>
+
+          <div class="card">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div class="card-title">Crown Repair</div>
+                <div class="card-title" style="color: var(--md-sys-color-primary);">$485.00</div>
+              </div>
+              <div class="card-subtitle">Labor: $350 • Materials: $135</div>
+              <div class="profit-hint">Your cost: $85 (37% margin)</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div class="card-title">Damper Repair</div>
+                <div class="card-title" style="color: var(--md-sys-color-primary);">$275.00</div>
+              </div>
+              <div class="card-subtitle">Labor: $150 • Parts: $125</div>
+              <div class="profit-hint">Your cost: $95 (24% margin)</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div class="card-title">Chimney Sweep</div>
+                <div class="card-title" style="color: var(--md-sys-color-primary);">$175.00</div>
+              </div>
+              <div class="card-subtitle">Labor only - standard sweep</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="total-card">
+          <div>
+            <div class="total-label">Customer Total</div>
+            <div class="total-sublabel">Before tax</div>
+          </div>
+          <div class="total-amount">$935.00</div>
+        </div>
+
+        <div class="profit-card">
+          <span>Your Profit on This Job</span>
+          <span class="profit-amount">+$615.00</span>
+        </div>
+
+        <div style="padding: 0 16px;">
+          <div style="display: flex; gap: 12px;">
+            <button class="btn btn-outlined" style="flex: 1;">
+              <span class="material-icons-outlined">email</span>
+              Email
+            </button>
+            <button class="btn btn-filled" style="flex: 1;">
+              <span class="material-icons-outlined">textsms</span>
+              Text Customer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN: Community -->
+    <div class="screen" id="screen-community">
+      <div class="top-app-bar">
+        <button class="icon-btn" onclick="navigateTo('screen-home')">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <span class="top-app-bar-title">Community</span>
+      </div>
+
+      <div class="screen-content">
+        <div class="community-header">
+          <div class="community-title">Sweeps Helping Sweeps</div>
+          <div class="community-subtitle">Connect with professionals in your area</div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">Master Sweeps Online</span>
+          <span class="online-indicator">● 12 available</span>
+        </div>
+
+        <div class="content-padding" style="padding-top: 0;">
+          <div class="sweep-card">
+            <div class="sweep-avatar">👨‍🔧</div>
+            <div class="sweep-info">
+              <div class="sweep-name">Mike Richardson</div>
+              <div class="sweep-certs">⭐ CSIA Master • NFI Gas</div>
+              <div class="sweep-location">Nashville, TN • 28 yrs exp</div>
+            </div>
+            <div class="sweep-status"></div>
+          </div>
+
+          <div class="sweep-card">
+            <div class="sweep-avatar">👩‍🔧</div>
+            <div class="sweep-info">
+              <div class="sweep-name">Sarah Chen</div>
+              <div class="sweep-certs">⭐ NCSG CCR • CCJ</div>
+              <div class="sweep-location">Portland, OR • 15 yrs exp</div>
+            </div>
+            <div class="sweep-status"></div>
+          </div>
+
+          <div class="sweep-card">
+            <div class="sweep-avatar">👨‍🔧</div>
+            <div class="sweep-info">
+              <div class="sweep-name">Tom Bradley</div>
+              <div class="sweep-certs">⭐ CSIA Master • NFI Pellet</div>
+              <div class="sweep-location">Denver, CO • 22 yrs exp</div>
+            </div>
+            <div class="sweep-status"></div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">Sweeps Near You</span>
+          <button class="section-action">See All</button>
+        </div>
+
+        <div class="content-padding" style="padding-top: 0;">
+          <div class="sweep-card">
+            <div class="sweep-avatar">👨‍🔧</div>
+            <div class="sweep-info">
+              <div class="sweep-name">David Park</div>
+              <div class="sweep-certs">CSIA Certified</div>
+              <div class="sweep-location">Seattle, WA • 8 mi away</div>
+            </div>
+          </div>
+
+          <div class="sweep-card">
+            <div class="sweep-avatar">👩‍🔧</div>
+            <div class="sweep-info">
+              <div class="sweep-name">Lisa Martinez</div>
+              <div class="sweep-certs">CSIA Certified • NCSG</div>
+              <div class="sweep-location">Tacoma, WA • 24 mi away</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 100px;"></div>
+      </div>
+
+      <div class="bottom-nav">
+        <button class="nav-item" onclick="navigateTo('screen-home')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">home</span>
+          </div>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-customers')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">people</span>
+          </div>
+          <span class="nav-label">Customers</span>
+        </button>
+        <button class="nav-item active">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">groups</span>
+          </div>
+          <span class="nav-label">Community</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-profile')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">person</span>
+          </div>
+          <span class="nav-label">Profile</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SCREEN: Profile -->
+    <div class="screen" id="screen-profile">
+      <div class="top-app-bar">
+        <button class="icon-btn" onclick="navigateTo('screen-home')">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <span class="top-app-bar-title">Profile</span>
+        <button class="icon-btn">
+          <span class="material-icons-outlined">settings</span>
+        </button>
+      </div>
+
+      <div class="screen-content">
+        <div class="profile-header">
+          <div class="profile-avatar">👨‍🔧</div>
+          <div class="profile-name">Jonathan K.</div>
+          <div class="profile-company">Vashon Chimney Service</div>
+          <div style="margin-top: 12px;">
+            <span class="cert-badge earned">✓ CSIA #12847</span>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-value">20+</div>
+            <div class="stat-label">Years Exp</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">847</div>
+            <div class="stat-label">Inspections</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">4.9★</div>
+            <div class="stat-label">Rating</div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">Certifications</span>
+          <button class="section-action">+ Add</button>
+        </div>
+
+        <div class="content-padding" style="padding-top: 0;">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">CSIA Certified Chimney Sweep</div>
+                  <div class="card-subtitle">Expires: March 2026</div>
+                </div>
+                <span class="chip chip-success">Active</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">NCSG Member</div>
+                  <div class="card-subtitle">Expires: December 2025</div>
+                </div>
+                <span class="chip chip-warning">Renew Soon</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-locked" onclick="showLockedModal('gas')">
+            <div class="card-content">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-title">NFI Gas Specialist</div>
+                  <div class="card-subtitle">Unlock gas fireplace workflows</div>
+                </div>
+                <span class="material-icons-outlined" style="color: var(--md-sys-color-outline);">lock</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">CEU Progress</span>
+        </div>
+
+        <div class="ceu-card">
+          <div class="ceu-header">
+            <span class="ceu-label">CSIA CEUs</span>
+            <span class="ceu-value">8 / 12</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 66%;"></div>
+          </div>
+          <div class="ceu-note">4 more CEUs needed by March 2026</div>
+        </div>
+
+        <div style="height: 100px;"></div>
+      </div>
+
+      <div class="bottom-nav">
+        <button class="nav-item" onclick="navigateTo('screen-home')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">home</span>
+          </div>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-customers')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">people</span>
+          </div>
+          <span class="nav-label">Customers</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('screen-community')">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">groups</span>
+          </div>
+          <span class="nav-label">Community</span>
+        </button>
+        <button class="nav-item active">
+          <div class="nav-icon-container">
+            <span class="material-icons-outlined">person</span>
+          </div>
+          <span class="nav-label">Profile</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- Locked Feature Modal -->
+  <div class="modal-overlay" id="modal-locked">
+    <div class="modal">
+      <div class="modal-icon" id="locked-modal-icon">🔵</div>
+      <div class="modal-title" id="locked-modal-title">Gas Fireplace Service</div>
+      <div class="modal-text" id="locked-modal-text">
+        This feature requires NFI Gas Specialist certification. Gas appliances have unique safety requirements that this certification ensures you can identify and address.
+      </div>
+      <div class="modal-stat">
+        <strong>136</strong> SweepNspect users have earned this certification
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-filled btn-full" onclick="hideModal('modal-locked')">
+          Get Certified at SureFire →
+        </button>
+        <button class="btn btn-text btn-full" onclick="hideModal('modal-locked')">
+          I'm Already Certified
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Master Sweep Modal -->
+  <div class="modal-overlay" id="modal-master-sweep">
+    <div class="modal">
+      <div class="modal-icon modal-icon-gold">👨‍🏫</div>
+      <div class="modal-title">Contact a Master Sweep</div>
+      <div class="modal-text">
+        Get real-time help from an experienced professional. Share photos, video, or livestream from your device.
+      </div>
+      <div class="modal-stat modal-stat-success">
+        <strong>12</strong> Master Sweeps available now
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-gold btn-full" onclick="hideModal('modal-master-sweep')">
+          📹 Start Live Session — $45
+        </button>
+        <button class="btn btn-tonal btn-full" onclick="hideModal('modal-master-sweep')">
+          💬 Send Photos — $25
+        </button>
+        <button class="btn btn-text btn-full" onclick="hideModal('modal-master-sweep')">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
