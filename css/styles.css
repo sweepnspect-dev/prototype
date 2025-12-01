@@ -112,14 +112,14 @@ body {
 }
 
 .app-logo {
-  width: 36px;
-  height: 36px;
+  width: 63px;
+  height: 63px;
   object-fit: contain;
 }
 
 .profile-logo {
-  width: 96px;
-  height: 96px;
+  width: 168px;
+  height: 168px;
   object-fit: contain;
   margin-bottom: 16px;
 }
